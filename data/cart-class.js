@@ -1,15 +1,15 @@
 class Cart {
   //object generator
   cartItems;
-  localStorageKey;
+  #localStorageKey;
 
   constructor(localStorageKey) {
-    this.localStorageKey = localStorageKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   }
 
-  loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+  #loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
     // function inside a object is method and can be type as shorthand property
     if (!this.cartItems) {
       this.cartItems = [
@@ -89,5 +89,6 @@ console.log(cart);
 console.log(businessCart);
 
 businessCart instanceof Cart;
+
 
 // we organize our code into objects so we group the data and the functions together
