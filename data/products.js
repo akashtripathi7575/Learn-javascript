@@ -58,7 +58,8 @@ class Clothing extends Product {
     `;
   }
 }
-
+// learn more details about classes and this 
+// this lets an object access its own properties in our code bcz if the object name changes it can still be accessible using this
 /*
 const date = new Date();
 console.log(date);
