@@ -41,10 +41,11 @@ class Product {
 }
 
 class Clothing extends Product {
+  // after last commit i add this section
   sizeChartLink;
 
-  constructor(productDetails) {
-    super(productDetails);
+  constructor(productDetails) { // helps to set the value
+    super(productDetails); // helps to call the constructor of the parent class
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
