@@ -82,7 +82,7 @@ function logThis() {
 logThis();
 logThis.call('hello');
 
-this
+this 
 const object3 = {
   method: () => {
     console.log(this);
