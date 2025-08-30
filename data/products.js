@@ -1,4 +1,4 @@
-import {formatCurrency} from '../scripts/utils/money.js';
+import { formatCurrency } from "../scripts/utils/money.js";
 
 export function getProduct(productId) {
   let matchingProduct;
@@ -36,7 +36,7 @@ class Product {
   }
 
   extraInfoHTML() {
-    return '';
+    return "";
   }
 }
 
@@ -44,7 +44,8 @@ class Clothing extends Product {
   // after last commit i add this section
   sizeChartLink;
 
-  constructor(productDetails) { // helps to set the value
+  constructor(productDetails) {
+    // helps to set the value
     super(productDetails); // helps to call the constructor of the parent class
     this.sizeChartLink = productDetails.sizeChartLink;
   }
@@ -58,7 +59,7 @@ class Clothing extends Product {
     `;
   }
 }
-// learn more details about classes and this 
+// learn more details about classes and this
 // this lets an object access its own properties in our code bcz if the object name changes it can still be accessible using this
 /*
 const date = new Date();
@@ -93,27 +94,46 @@ object3.method();
 
 export let products = [];
 
+export function loadProductsFetch() {
+  const promise = fetch("https://supersimplebackend.dev/products")
+    .then((response) => {
+      return response.json();
+    })
+    .then((productsData) => {
+      products = productsData.map((productDetails) => {
+        if (productDetails.type === "clothing") {
+          return new Clothing(productDetails);
+        }
+        return new Product(productDetails);
+      });
+      console.log("load products");
+    });
+  return promise;
+}
+
+/*
+loadProductsFetch().then(() => {
+  // attaches the another step after return promise
+  console.log('next step after loading products');
+}); */
+
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
 
-  xhr.addEventListener('load', () => {
+  xhr.addEventListener("load", () => {
     products = JSON.parse(xhr.response).map((productDetails) => {
-  if (productDetails.type === 'clothing') {
-    return new Clothing(productDetails);
-  }
-  return new Product(productDetails);
-});
-    console.log('load products');
+      if (productDetails.type === "clothing") {
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+    console.log("load products");
     fun();
   });
 
-
-
-  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.open("GET", "https://supersimplebackend.dev/products");
   xhr.send();
-  
 }
-
 
 /*
 export const products = [
